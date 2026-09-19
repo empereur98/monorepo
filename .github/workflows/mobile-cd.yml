@@ -16,7 +16,7 @@ permissions:
 
 defaults:
   run:
-    working-directory: mobile
+    working-directory: taskManager-mobile
 
 jobs:
   build-release-apk:

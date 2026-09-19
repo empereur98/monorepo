@@ -4,12 +4,12 @@ on:
   push:
     branches: [main]
     paths:
-      - 'mobile/**'
+      - 'taskManager-mobile/**'
       - '.github/workflows/mobile-ci.yml'
   pull_request:
     branches: [main]
     paths:
-      - 'mobile/**'
+      - 'taskManager-mobile/**'
       - '.github/workflows/mobile-ci.yml'
 
 permissions:
@@ -71,7 +71,7 @@ jobs:
       - name: Coverage Quality Gate
         uses: VeryGoodOpenSource/very_good_coverage@v3
         with:
-          path: mobile/coverage/lcov.info
+          path: taskManager-mobile/coverage/lcov.info
           min_coverage: 40
 
       - name: Upload coverage report
@@ -79,7 +79,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: flutter-coverage
-          path: mobile/coverage/
+          path: taskManager-mobile/coverage/
           retention-days: 14
 
   # ---------------------------------------------------------------------
@@ -102,7 +102,7 @@ jobs:
           scan-type: fs
           scan-ref: mobile
           format: sarif
-          output: mobile/trivy-fs-results.sarif
+          output: taskManager-mobile/trivy-fs-results.sarif
           severity: HIGH,CRITICAL
           exit-code: "0" # avertissement uniquement : base CVE Dart moins mature, cf. Module 3 "warning vs bloquant"
 
@@ -110,4 +110,4 @@ jobs:
         if: always()
         uses: github/codeql-action/upload-sarif@v3
         with:
-          sarif_file: mobile/trivy-fs-results.sarif
+          sarif_file: taskManager-mobile/trivy-fs-results.sarif
